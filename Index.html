@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Face Attendance System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <h1>Smart Face Attendance System</h1>
+      <!-- ✅ Real-time Clock -->
+      <div id="clock" class="clock"></div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="left">
+      <div class="cam-card">
+        <div class="video-wrap">
+          <video id="videoInput" autoplay muted playsinline></video>
+          <canvas id="overlay"></canvas>
+        </div>
+
+        <div class="controls">
+          <input id="studentName" placeholder="Student Name" />
+          <input id="studentRoll" placeholder="Roll No" />
+          <div class="btn-row">
+            <button id="registerBtn" class="btn primary">Register Face</button>
+            <button id="startBtn" class="btn">Start Attendance</button>
+            <button id="downloadCsvBtn" class="btn outline">Download CSV</button>
+            <button id="resetBtn" class="btn danger" style="background:#e63946;color:white;">
+              Reset All Data
+            </button>
+          </div>
+          <div id="status" class="status">Loading face-api models…</div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <!-- ✅ New Attendance Stats Panel -->
+      <div class="panel">
+        <h3>Attendance Stats</h3>
+        <div id="stats">
+          <p>Total Students: <span id="totalStudents">0</span></p>
+          <p>Present Today: <span id="presentToday">0</span></p>
+          <p>Absent: <span id="absentCount">0</span></p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Registered Students</h3>
+        <ul id="studentList" class="student-list"></ul>
+      </div>
+
+      <div class="panel">
+        <h3>Attendance Log</h3>
+        <ul id="attendanceList" class="attendance-list"></ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ✅ Load face-api (browser build) FIRST -->
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+  <!-- ✅ Firebase (optional) -->
+  <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- ✅ Your main script -->
+  <script defer src="script.js"></script>
+
+  <!-- ✅ Beep sound -->
+  <audio id="beepSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg" preload="auto"></audio>
+</body>
+</html>
